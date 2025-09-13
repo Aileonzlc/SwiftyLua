@@ -18,7 +18,7 @@ import PackageDescription
 
 let package = Package(
     name: "LuaTest",
-    dependencies: [ .package(url: "https://github.com/SwiftyLua/SwiftyLua.git", from: "0.1.1") ],
+    dependencies: [ .package(url: "https://github.com/SwiftyLua/SwiftyLua.git", from: "1.0.0") ],
     targets: [
         .executableTarget(
             name: "LuaTest",
