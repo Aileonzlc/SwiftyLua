@@ -8,15 +8,15 @@ let package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13),],
     products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
-    .library(
-        name: "SwiftyLua",
-        targets: ["SwiftyLua"]),
+        .library(
+            name: "SwiftyLua",
+            targets: ["SwiftyLua", "lua4swift"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Quick/Quick", from: "7.6.2"),
-        .package(url: "https://github.com/Quick/Nimble", from: "13.7.1")
+        // .package(url: "https://github.com/Quick/Quick", from: "7.6.2"),
+        // .package(url: "https://github.com/Quick/Nimble", from: "13.7.1")
     ],
     targets: [
         .target(
@@ -33,14 +33,20 @@ let package = Package(
             path: "Sources/lua4swift",
             linkerSettings: [.linkedLibrary("z"), .linkedFramework("Foundation")]
          ),
+//        .testTarget(
+//            name: "SwiftyLuaTests",
+//            dependencies: [
+//                .target(name: "SwiftyLua"),
+//                .product(name: "Quick", package: "Quick"),
+//                .product(name: "Nimble", package: "Nimble")
+//            ],
+//            resources: [.copy("LuaScripts")]),
         .testTarget(
-            name: "SwiftyLuaTests",
+            name: "SwiftyLuaSimpleTest",
             dependencies: [
-                .target(name: "SwiftyLua"),
-                .product(name: "Quick", package: "Quick"),
-                .product(name: "Nimble", package: "Nimble")
-            ],
-            resources: [.copy("LuaScripts")]),
+                "SwiftyLua"
+            ]
+        )
     ],
     cLanguageStandard: .gnu99,
     cxxLanguageStandard: .cxx11
